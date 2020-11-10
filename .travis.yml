@@ -7,12 +7,17 @@ branches:
   only:
     - master # build master branch only
 script:
-  - hexo generate # generate static files
-deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GH_TOKEN
-  keep-history: true
-  on:
-    branch: master
-  local-dir: public
+  - hexo g # generate static files
+
+after_script:
+  - cd ./public
+  - git init
+  - git config user.name "will"
+  - git config user.email "641631209@11.com"
+  - git add .
+  - git commit -m "Update docs"
+  - git push --force --quiet "https://${githubblog}@github.com/wsh0809/wsh0809.github.io" master:master
+
+env:
+  global:
+    - GH_REF: github.com/gl09025/hexo-blog.git
