@@ -16,8 +16,4 @@ after_script:
   - git config user.email "641631209@11.com"
   - git add .
   - git commit -m "Update docs"
-  - git push --force --quiet "https://${githubblog}@github.com/wsh0809/wsh0809.github.io" master:master
-
-env:
-  global:
-    - GH_REF: github.com/gl09025/hexo-blog.git
+  - git push --force --quiet "https://${GH_TOKEN}@github.com/wsh0809/wsh0809.github.io" gh-pages:gh-pages
